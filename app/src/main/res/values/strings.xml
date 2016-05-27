@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ListaZakupow</string>
+    <string name="action_settings">Settings</string>
+    <string name="set_product_name">Wprowadz nazwe produktu</string>
+    <string name="set_category_name">Wprowadz nazwe category</string>
+    <string name="set_shop_name">Wprowadz nazwe sklepu</string>
+    <string name="cancel">Anuluj</string>
+    <string name="submit">Dodaj</string>
+    <string name="title_activity_lista_sklepow">ListaSklepow</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+</resources>
