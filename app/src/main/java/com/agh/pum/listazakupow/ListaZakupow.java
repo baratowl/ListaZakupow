@@ -62,7 +62,7 @@ public class ListaZakupow extends BaseActivity {
                 //Intent i = new Intent(ListaZakupow.this, DodajProduktDialog.class);
                 //startActivity(i);
                 //showAlertDialog();
-                showCustomDialog();
+                showCustomDialogNowyProdukt();
             }
         });
 
@@ -73,7 +73,7 @@ public class ListaZakupow extends BaseActivity {
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
                 "Android", "iPhone", "WindowsMobile"};
         */
-        String[] values = new String[]{"Mleko", "Ser bialy", "Chleb", "Pierogi", "Kredki", "Krem do golenia"};
+        String[] values = new String[]{"Mleko", "Ser bialy", "Chleb", "Pierogi", "Kredki", "Krem do golenia", "ble1","ble2","ble3"};
 
         final ArrayList<String> list = new ArrayList<String>();
         Product.getProducts(database,list);
@@ -129,7 +129,7 @@ public class ListaZakupow extends BaseActivity {
         }
     }
 
-    void showCustomDialog(){
+    void showCustomDialogNowyProdukt(){
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.activity_dodaj_produkt_dialog, null);
@@ -137,14 +137,14 @@ public class ListaZakupow extends BaseActivity {
 
         final EditText edt = (EditText) dialogView.findViewById(R.id.nazwaProduktuNowyProdukt);
 
-        dialogBuilder.setTitle("Custom dialog");
-        dialogBuilder.setMessage("Enter text below");
-        dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+        dialogBuilder.setTitle("Dodawanie Produktu do Listy");
+       // dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setPositiveButton("Dodaj", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 //do something with edt.getText().toString();
             }
         });
-        dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        dialogBuilder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
             }
@@ -158,7 +158,7 @@ public class ListaZakupow extends BaseActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // set title
-        alertDialogBuilder.setTitle("Your Title");
+        alertDialogBuilder.setTitle("Dodaj nowy produkt");
 
         // set dialog message
         alertDialogBuilder

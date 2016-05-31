@@ -28,7 +28,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="@string/set_category_name" />
-
+<!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:id="@+id/DodajSklepSubmit"
         android:layout_below="@+id/nazwaKategoriiNowySklep"
         android:layout_alignEnd="@+id/nazwaKategoriiNowySklep" />
-
+-->
 
 </RelativeLayout>
 

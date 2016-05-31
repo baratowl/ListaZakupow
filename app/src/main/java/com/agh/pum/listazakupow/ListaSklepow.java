@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -41,7 +43,7 @@ public class ListaSklepow extends BaseActivity {
 
                 //Intent i = new Intent(ListaZakupow.this, DodajProduktDialog.class);
                 //startActivity(i);
-                showAlertDialog();
+                showCustomDialogNowySklep();
             }
         });
 
@@ -99,36 +101,27 @@ public class ListaSklepow extends BaseActivity {
         public boolean hasStableIds() { return true; }
     }
 
-    void showAlertDialog()
-    {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+    void showCustomDialogNowySklep(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.activity_dodaj_sklep_dialog, null);
+        dialogBuilder.setView(dialogView);
 
-        // set title
-        alertDialogBuilder.setTitle("Your Title");
+        final EditText edt = (EditText) dialogView.findViewById(R.id.nazwaProduktuNowyProdukt);
 
-        // set dialog message
-        alertDialogBuilder
-                .setMessage("Click yes to exit!")
-                .setCancelable(false)
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, close
-                        // current activity
-                        ListaSklepow.this.finish();
-                    }
-                })
-                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
-                        dialog.cancel();
-                    }
-                });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
-        alertDialog.show();
+        dialogBuilder.setTitle("Dodawanie Sklepu do Listy");
+        // dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setPositiveButton("Dodaj", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do something with edt.getText().toString();
+            }
+        });
+        dialogBuilder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
     }
 }
