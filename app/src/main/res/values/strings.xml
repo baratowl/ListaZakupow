@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ListaZakupow</string>
+    <string name="app_name">Lista Zakupow</string>
     <string name="action_settings">Settings</string>
     <string name="set_product_name">Wprowadz nazwe produktu</string>
     <string name="set_category_name">Wprowadz nazwe category</string>
@@ -9,4 +9,7 @@
     <string name="title_activity_lista_sklepow">ListaSklepow</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
 </resources>

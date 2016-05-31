@@ -3,33 +3,22 @@ package com.agh.pum.listazakupow;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ListaZakupow extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class ListaZakupow extends BaseActivity {
+    //implements NavigationView.OnNavigationItemSelectedListener {
 
     private SQLiteDatabase database;
 
@@ -37,39 +26,38 @@ public class ListaZakupow extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_zakupow);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        /**
+         *  We will not use setContentView in this activity
+         *  Rather than we will use layout inflater to add view in FrameLayout of our base activity layout*/
+
+        /**
+         * Adding activity_lista_zakupow layout to parent class frame layout.
+         */
+        getLayoutInflater().inflate(R.layout.activity_lista_zakupow, frameLayout);
+
+        /**
+         * Setting title and itemChecked
+         */
+        mDrawerList.setItemChecked(position, true);
+        setTitle(listArray[position]);
 
         //add products
         SqlOpenHelper helper = new SqlOpenHelper(this);
         database = helper.getWritableDatabase();
-
 
         //Product p = new Product(2, "ser zolty", 1);
         //Product.insertProduct(database);
         //Product.getProducts(database);
         //add products
 
-
-
-        /*
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-*/
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        ImageButton fab = (ImageButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
 
                 //Intent i = new Intent(ListaZakupow.this, DodajProduktDialog.class);
                 //startActivity(i);
@@ -78,91 +66,67 @@ public class ListaZakupow extends AppCompatActivity
             }
         });
 
+        final ListView listview = (ListView) findViewById(R.id.listview);
+       /* String[] values = Product.getProducts(database);/*new String[]{"Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
+                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
+                "Android", "iPhone", "WindowsMobile"};
+        */
+        String[] values = new String[]{"Mleko", "Ser bialy", "Chleb", "Pierogi", "Kredki", "Krem do golenia"};
 
-
-
-            final ListView listview = (ListView) findViewById(R.id.listview);
-           /* String[] values = Product.getProducts(database);/*new String[]{"Android", "iPhone", "WindowsMobile",
-                    "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                    "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                    "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                    "Android", "iPhone", "WindowsMobile"};
-            */
-            final ArrayList<String> list = new ArrayList<String>();
-            Product.getProducts(database,list);
-            /*for (int i = 0; i < values.length; ++i) {
-                list.add(values[i]);
-            }*/
-
-            final StableArrayAdapter adapter = new StableArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, list);
-            listview.setAdapter(adapter);
-
-            listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                @Override
-                public void onItemClick(AdapterView<?> parent, final View view,
-                                        int position, long id) {
-                    final String item = (String) parent.getItemAtPosition(position);
-                    view.animate().setDuration(2000).alpha(0)
-                            .withEndAction(new Runnable() {
-                                @Override
-                                public void run() {
-                                    list.remove(item);
-                                    adapter.notifyDataSetChanged();
-                                    view.setAlpha(1);
-                                }
-                            });
-                }
-
-            });
+        final ArrayList<String> list = new ArrayList<String>();
+        Product.getProducts(database,list);
+        for (int i = 0; i < values.length; ++i) {
+            list.add(values[i]);
         }
 
-        private class StableArrayAdapter extends ArrayAdapter<String> {
+        final StableArrayAdapter adapter = new StableArrayAdapter(this,
+                android.R.layout.simple_list_item_1, list);
+        listview.setAdapter(adapter);
 
-            HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-            public StableArrayAdapter(Context context, int textViewResourceId,
-                                      List<String> objects) {
-                super(context, textViewResourceId, objects);
-                for (int i = 0; i < objects.size(); ++i) {
-                    mIdMap.put(objects.get(i), i);
-                }
-            }
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
-            public long getItemId(int position) {
-                String item = getItem(position);
-                return mIdMap.get(item);
+            public void onItemClick(AdapterView<?> parent, final View view,
+                                    int position, long id) {
+                final String item = (String) parent.getItemAtPosition(position);
+                view.animate().setDuration(2000).alpha(0)
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                list.remove(item);
+                                adapter.notifyDataSetChanged();
+                                view.setAlpha(1);
+                            }
+                        });
             }
 
-            @Override
-            public boolean hasStableIds() {
-                return true;
-            }
-
-        }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lista_zakupow, menu);
-        return true;
+        });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private class StableArrayAdapter extends ArrayAdapter<String>
+    {
+        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        public StableArrayAdapter(Context context, int textViewResourceId,
+                                  List<String> objects) {
+            super(context, textViewResourceId, objects);
+            for (int i = 0; i < objects.size(); ++i) {
+                mIdMap.put(objects.get(i), i);
+            }
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public long getItemId(int position) {
+            String item = getItem(position);
+            return mIdMap.get(item);
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return true;
+        }
     }
 
     void showCustomDialog(){
@@ -188,10 +152,10 @@ public class ListaZakupow extends AppCompatActivity
         AlertDialog b = dialogBuilder.create();
         b.show();
     }
+
     void showAlertDialog()
     {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // set title
         alertDialogBuilder.setTitle("Your Title");
@@ -220,44 +184,5 @@ public class ListaZakupow extends AppCompatActivity
 
         // show it
         alertDialog.show();
-    }
-/*
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-*/
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        //Intent intent = null;
-
-        if (id == R.id.nav_lista_zakupow) {
-            Toast.makeText(this, "Jestem w liscie zakupow!", Toast.LENGTH_SHORT).show();
-            //intent = new Intent(ListaZakupow.this, ListaZakupow.class);
-        } else if (id == R.id.nav_lista_sklepow) {
-            Toast.makeText(this, "Jestem w liscie sklepow!", Toast.LENGTH_SHORT).show();
-            //intent = new Intent(ListaZakupow.this, ListaSklepow.class);
-        } else if (id == R.id.nav_trackuj) {
-            Toast.makeText(this, "Teraz trackuje!", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_schowaj) {
-            Toast.makeText(this, "Teraz apke schowam!", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_info) {
-            Toast.makeText(this, "Jestem w INFO apki!", Toast.LENGTH_SHORT).show();
-        }
-
-        //startActivity(intent);
-        //finish();
-
-        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }
