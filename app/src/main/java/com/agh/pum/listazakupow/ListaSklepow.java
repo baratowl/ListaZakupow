@@ -65,7 +65,8 @@ public class ListaSklepow extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
                 final String item = (String) parent.getItemAtPosition(position);
-                view.animate().setDuration(2000).alpha(0)
+                showCustomDialogEdytujSklep(item);
+                /*view.animate().setDuration(2000).alpha(0)
                         .withEndAction(new Runnable() {
                             @Override
                             public void run() {
@@ -73,7 +74,7 @@ public class ListaSklepow extends BaseActivity {
                                 adapter.notifyDataSetChanged();
                                 view.setAlpha(1);
                             }
-                        });
+                        });*/
             }
 
         });
@@ -107,13 +108,13 @@ public class ListaSklepow extends BaseActivity {
         final View dialogView = inflater.inflate(R.layout.activity_dodaj_sklep_dialog, null);
         dialogBuilder.setView(dialogView);
 
-        final EditText edt = (EditText) dialogView.findViewById(R.id.nazwaProduktuNowyProdukt);
+        final EditText edt = (EditText) dialogView.findViewById(R.id.nazwaSklepuNowySklep);
 
         dialogBuilder.setTitle("Dodawanie Sklepu do Listy");
         // dialogBuilder.setMessage("Enter text below");
-        dialogBuilder.setPositiveButton("Dodaj", new DialogInterface.OnClickListener() {
+        dialogBuilder.setPositiveButton("Mapa", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                //do something with edt.getText().toString();
+                //show map   //do something with edt.getText().toString();
             }
         });
         dialogBuilder.setNegativeButton("Anuluj", new DialogInterface.OnClickListener() {
@@ -121,7 +122,51 @@ public class ListaSklepow extends BaseActivity {
                 dialog.cancel();
             }
         });
+        dialogBuilder.setNeutralButton("Dodaj", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+            }
+        });
         AlertDialog b = dialogBuilder.create();
         b.show();
     }
+
+    void showCustomDialogEdytujSklep(String sklepID){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.activity_dodaj_sklep_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText edtEdytujNazwaSklep = (EditText) dialogView.findViewById(R.id.nazwaSklepuNowySklep);
+        edtEdytujNazwaSklep.setText("Aktualna nazwa produktu");
+
+        final EditText edtEdytujKategoriaSklep = (EditText) dialogView.findViewById(R.id.nazwaKategoriiNowySklep);
+        edtEdytujKategoriaSklep.setText("Aktualna kategoria produktu");
+
+        final EditText edtEdytujLanSklep = (EditText) dialogView.findViewById(R.id.lanSklep);
+        edtEdytujLanSklep.setText("Aktualna kategoria produktu");
+
+        final EditText edtEdytujLatSklep = (EditText) dialogView.findViewById(R.id.latSklep);
+        edtEdytujLatSklep.setText("Aktualna kategoria produktu");
+        dialogBuilder.setTitle("Edycja Sklepu");
+        // dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setPositiveButton("Zapisz", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do something with edt.getText().toString();
+            }
+        });
+        dialogBuilder.setNegativeButton("Usun", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        });
+
+        dialogBuilder.setNeutralButton("Anuluj", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }});
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+    }
+
 }

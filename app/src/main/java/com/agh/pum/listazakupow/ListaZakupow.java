@@ -85,12 +85,18 @@ public class ListaZakupow extends BaseActivity {
                 android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
 
+
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                                     int position, long id) {
+
+
                 final String item = (String) parent.getItemAtPosition(position);
+                showCustomDialogEdytujProdukt(item);
+                //nice list item removal
+                /*
                 view.animate().setDuration(2000).alpha(0)
                         .withEndAction(new Runnable() {
                             @Override
@@ -99,10 +105,11 @@ public class ListaZakupow extends BaseActivity {
                                 adapter.notifyDataSetChanged();
                                 view.setAlpha(1);
                             }
-                        });
+                        });*/
             }
 
         });
+
     }
 
     private class StableArrayAdapter extends ArrayAdapter<String>
@@ -149,6 +156,39 @@ public class ListaZakupow extends BaseActivity {
                 dialog.cancel();
             }
         });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+    }
+
+    void showCustomDialogEdytujProdukt(String produktID){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.activity_dodaj_produkt_dialog, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText edtEdytujNazwaProdukt = (EditText) dialogView.findViewById(R.id.nazwaProduktuNowyProdukt);
+        edtEdytujNazwaProdukt.setText("Aktualna nazwa produktu");
+
+        final EditText edtEdytujKategoriaProdukt = (EditText) dialogView.findViewById(R.id.nazwaKategoriiNowyProdukt);
+        edtEdytujKategoriaProdukt.setText("Aktualna kategoria produktu");
+
+        dialogBuilder.setTitle("Edycja Produktu");
+        // dialogBuilder.setMessage("Enter text below");
+        dialogBuilder.setPositiveButton("Zapisz", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do something with edt.getText().toString();
+            }
+        });
+        dialogBuilder.setNegativeButton("Usun", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        });
+
+        dialogBuilder.setNeutralButton("Anuluj", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }});
         AlertDialog b = dialogBuilder.create();
         b.show();
     }

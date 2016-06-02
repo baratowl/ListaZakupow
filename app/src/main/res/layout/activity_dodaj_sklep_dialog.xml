@@ -10,10 +10,10 @@
     tools:context="com.agh.pum.listazakupow.DodajSklepDialog">
 
     <EditText
-        android:id="@+id/nazwaProduktuNowyProdukt"
+        android:id="@+id/nazwaSklepuNowySklep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
@@ -23,12 +23,41 @@
         android:id="@+id/nazwaKategoriiNowySklep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="54dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="@string/set_category_name" />
-<!--
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/lanSklep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="lan" />
+
+        <EditText
+            android:id="@+id/latSklep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="146dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:hint="lat" />
+
+
+
+    </RelativeLayout>
+
+    <!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,6 +74,5 @@
         android:layout_below="@+id/nazwaKategoriiNowySklep"
         android:layout_alignEnd="@+id/nazwaKategoriiNowySklep" />
 -->
-
 </RelativeLayout>
 
