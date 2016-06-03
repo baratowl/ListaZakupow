@@ -35,7 +35,7 @@ public class BaseActivity extends Activity {
     /**
      * List item array for navigation drawer items.
      * */
-    protected String[] listArray = { "Lista zakupow","Lista sklepow","Trackuj","Schowaj","Info" };
+    protected String[] listArray = new String[5];
 
     /**
      * Static variable for selected item position. Which can be used in child activity to know which item is selected from the list.
@@ -66,6 +66,12 @@ public class BaseActivity extends Activity {
         frameLayout = (FrameLayout) findViewById(R.id.content_frame);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        listArray[0] = getString(R.string.lista_zakupow_label);
+        listArray[1] = getString(R.string.lista_sklepow_label);
+        listArray[2] = getString(R.string.trackuj_label);
+        listArray[3] = getString(R.string.schowaj_label);
+        listArray[4] = getString(R.string.info_label);
 
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item_layout, listArray));

@@ -11,21 +11,41 @@
 
     <LinearLayout
         android:id="@+id/container_schowaj"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
 
-        <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:id="@+id/startButton"
+                android:layout_weight="0.5"
+                android:layout_gravity="left" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stop"
+                android:id="@+id/stopButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.50" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:text="Tutaj przyjdzie user interfejs dla schowaj!!!"
-            android:id="@+id/textView" />
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/tvStatus"
+            android:contentDescription="@string/status"
+            android:layout_weight="0.20" />
 
     </LinearLayout>
-
 </RelativeLayout>
 

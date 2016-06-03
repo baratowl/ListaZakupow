@@ -114,7 +114,9 @@ public class ListaSklepow extends BaseActivity {
                     public void onClick(DialogInterface dialog,int id) {
                         // if this button is clicked, close
                         // current activity
+                        position = 0;
                         ListaSklepow.this.finish();
+                        openActivity(position);
                     }
                 })
                 .setNegativeButton("No",new DialogInterface.OnClickListener() {

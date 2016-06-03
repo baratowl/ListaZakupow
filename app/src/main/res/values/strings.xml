@@ -6,10 +6,32 @@
     <string name="set_shop_name">Wprowadz nazwe sklepu</string>
     <string name="cancel">Anuluj</string>
     <string name="submit">Dodaj</string>
-    <string name="title_activity_lista_sklepow">ListaSklepow</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_base">BaseActivity</string>
     <string name="open_drawer">Drawer Open</string>
     <string name="close_drawer">Drawer Close</string>
+    <string name="lista_zakupow_label">Lista zakupow</string>
+    <string name="lista_sklepow_label">Lista sklepow</string>
+    <string name="trackuj_label">Trackuj</string>
+    <string name="schowaj_label">Uruchom/Zatrzymaj</string>
+    <string name="info_label">Info</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="status">Status</string>
+    <string name="status_gps_available">GPS available again</string>
+    <string name="status_gps_out">GPS out of service</string>
+    <string name="status_gps_temp_unavailable">GPS temporarily unavailable</string>
+    <string name="status_gps_unknown">Status GPS unknown</string>
+    <string name="status_gps_prov_enabled">GPS Provider Enabled</string>
+    <string name="status_gps_prov_disabled">GPS Provider Disabled</string>
+    <string name="status_gps_new_loc">New GPS location:</string>
+    <string name="status_net_last_loc">Last network location:</string>
+    <string name="status_net_loc_available">Network location available again</string>
+    <string name="status_net_loc_out">Network location out of service</string>
+    <string name="status_net_loc_temp_unavailable">Network location temporarily unavailable</string>
+    <string name="status_net_prov_enabled">Network Provider Enabled</string>
+    <string name="status_net_prov_disabled">Network Provider Disabled</string>
+    <string name="status_net_unknown">Status Network Provider unknown</string>
+    <string name="status_net_new_loc">New network location:</string>
+    <string name="action_start">Status: Akcja sledzienia sklepow URUCHOMIONA</string>
+    <string name="action_stop">Status: Akcja sledzienia sklepow ZATRZYMANA</string>
+
 </resources>
