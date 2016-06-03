@@ -33,5 +33,7 @@
     <string name="status_net_new_loc">New network location:</string>
     <string name="action_start">Status: Akcja sledzienia sklepow URUCHOMIONA</string>
     <string name="action_stop">Status: Akcja sledzienia sklepow ZATRZYMANA</string>
+    <string name="set_szerokosc">Podaj dlugosc geograficzna</string>
+    <string name="set_dlugosc">Podaj szerokosc geograficzna</string>
 
 </resources>
